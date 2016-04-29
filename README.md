@@ -46,5 +46,5 @@
 
 ######*attribute:name will be segmented into first and last name -- so two string values of fName and lName will be used. 
 
-######**age is of type INTEGER, not STRING.
+######**attribute:age is of type INTEGER, not STRING.
 
