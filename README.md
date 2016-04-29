@@ -20,3 +20,19 @@
 #####2. As a user, 	when I click the search toolbar I want to type my favorite baseball player	so I can find information about this particular player.
 #####3. As a user, when I'm on the player's page I want to see the stats displayed	so I can see data about this particular player
 #####4. As a user, when I'm on the player's page I want to be able to favorite this player	so I can reference this player at a later time (or share it with friends ---- EXTRA FEATURE)
+
+
+###Black Marker Prototype:
+![img1](/images/img1.jpg)
+#####1. User will navigate the app starting with the first page. Which will provide instructions on how to interact with the app.
+
+![img2](/images/img2.jpg)
+#####2. As player types in his/her query, there will be displayed auto-populated search results. To trigger this event, they can do so by inputting the following query varieties:
+#######	1. [first name]
+#######	2. [last name]
+#######	3. [last name, first name]
+#######	4. [first name, last name]
+
+
+
+![img3](/images/img3.jpg)
