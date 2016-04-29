@@ -1,5 +1,5 @@
-#Fantasy Baseball App
-##ver 1.0
+#Fantasy Baseball App v.1.0
+
 
 #####This is a basic app that will contain a database of baseball players and display attributes (statistics) about the particular player.
 
