@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -12,6 +13,7 @@ import android.view.MenuInflater;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 import co.aartea.baseballapp.setup.DBAssetHelper;
 
@@ -56,10 +58,11 @@ public class MainActivity extends AppCompatActivity {
 
             //Implicit Intent needs to handle our query!
             String query = intent.getStringExtra(SearchManager.QUERY);
+            Toast.makeText(MainActivity.this,"Searching for "+query,Toast.LENGTH_SHORT).show();
 
             //Cursor needs access to cursor in our SQL helper class.
             Cursor cursor = PlayerSQLiteHelper.getInstance(MainActivity.this).getPlayerList(query);
-
+            DatabaseUtils.dumpCursor(cursor);
             ListView playerListView = (ListView)findViewById(R.id.list_view);
 
             if(mCursorAdapter == null) {
