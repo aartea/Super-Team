@@ -60,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
             //Cursor needs access to cursor in our SQL helper class.
             Cursor cursor = PlayerSQLiteHelper.getInstance(MainActivity.this).getPlayerList(query);
 
-            ListView numbersListView = (ListView)findViewById(R.id.list_view);
+            ListView playerListView = (ListView)findViewById(R.id.list_view);
+
             if(mCursorAdapter == null) {
                 mCursorAdapter = new SimpleCursorAdapter(
                         MainActivity.this,
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                         new int[]{android.R.id.text1},
                         0
                 );
-                numbersListView.setAdapter(mCursorAdapter);
+                playerListView.setAdapter(mCursorAdapter);
             }else{
                 mCursorAdapter.swapCursor(cursor);
             }

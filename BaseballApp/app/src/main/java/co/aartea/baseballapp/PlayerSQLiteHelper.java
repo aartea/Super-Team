@@ -23,7 +23,7 @@ public class PlayerSQLiteHelper extends SQLiteOpenHelper{
     public static final String COL_LAST_NAME = "last_name";
     public static final String COL_AGE= "age";
     public static final String COL_TEAM = "team";
-    public static final String COL_POSITION = "first_name";
+    public static final String COL_POSITION = "position";
 
     //Array of our database columns
 
@@ -33,12 +33,12 @@ public class PlayerSQLiteHelper extends SQLiteOpenHelper{
 
     private static final String CREATE_PLAYERS_TABLE = "CREATE TABLE "+PLAYERS_TABLE_NAME +
             "("+
-            COL_ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
-            COL_FIRST_NAME+" TEXT,"+
-            COL_LAST_NAME+" TEXT,"+
-            COL_AGE+"INTEGER,"+
-            COL_TEAM+"TEXT,"+
-            COL_POSITION+"TEXT)";
+            COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COL_FIRST_NAME+" TEXT, "+
+            COL_LAST_NAME+" TEXT, "+
+            COL_AGE+" INTEGER, "+
+            COL_TEAM+" TEXT, "+
+            COL_POSITION+" TEXT )";
 
     //Class constructor
     private static PlayerSQLiteHelper instance;
@@ -50,7 +50,7 @@ public class PlayerSQLiteHelper extends SQLiteOpenHelper{
         return instance;
     }
 
-    PlayerSQLiteHelper(Context context) {
+    private PlayerSQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -62,8 +62,7 @@ public class PlayerSQLiteHelper extends SQLiteOpenHelper{
         db.execSQL(CREATE_PLAYERS_TABLE);
     }
 
-
-    //onUpgrade method for database
+    //onUpgrade method for database; drops a table if one exists and revamps it with new data
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + CREATE_PLAYERS_TABLE);
@@ -75,15 +74,17 @@ public class PlayerSQLiteHelper extends SQLiteOpenHelper{
 
         SQLiteDatabase db = this.getReadableDatabase();
 
+        //Cursor will go and locate your query among column values and it will be returned by this method.
+
         Cursor cursor = db.query(PLAYERS_TABLE_NAME, // a. table
                 PLAYERS_COLUMNS, // b. column names
-                null, // c. selections
-                null, // d. selections args
+                COL_FIRST_NAME + " LIKE ?", // c. selections
+                new String[]{query + "%"}, // d. selections args
                 null, // e. group by
                 null, // f. having
                 null, // g. order by
                 null); // h. limit
+
         return cursor;
     }
-
 }
