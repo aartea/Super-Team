@@ -42,7 +42,7 @@ public class PlayerSQLiteHelper extends SQLiteOpenHelper{
 
     //Class constructor
     private static PlayerSQLiteHelper instance;
-
+    //Our singleton
     public static PlayerSQLiteHelper getInstance(Context context){
         if(instance == null){
             instance = new PlayerSQLiteHelper(context);
