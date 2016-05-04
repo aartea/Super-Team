@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
             //Cursor needs access to cursor in our SQL helper class.
             Cursor cursor = PlayerSQLiteHelper.getInstance(MainActivity.this).getPlayerList(query);
+            DatabaseUtils.dumpCursor(cursor);
 
             ListView playerListView = (ListView)findViewById(R.id.list_view);
 
