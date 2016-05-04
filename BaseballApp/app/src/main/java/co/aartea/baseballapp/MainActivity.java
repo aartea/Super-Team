@@ -29,23 +29,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mCursorAdapter = null;
 
+        playerListView = (ListView)findViewById(R.id.list_view);
+
         //Read database that contains our pre-populated info.
         DBAssetHelper dbAssetHelper = new DBAssetHelper(MainActivity.this);
         dbAssetHelper.getReadableDatabase();
 
         //Main method will contain our handleIntent method and passes getIntent() as a parameter.
         handleIntent(getIntent());
-
-        //onItemClickListener that will handle detail view when listview item is clicked
-        playerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent =  new Intent(MainActivity.this,DetailActivity.class);
-                cursor.moveToPosition(position);
-                intent.putExtra("id",cursor.getInt(cursor.getColumnIndex(PlayerSQLiteHelper.COL_ID)));
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
@@ -78,8 +69,6 @@ public class MainActivity extends AppCompatActivity {
             cursor = PlayerSQLiteHelper.getInstance(MainActivity.this).getPlayerList(query);
             DatabaseUtils.dumpCursor(cursor);
 
-            playerListView = (ListView)findViewById(R.id.list_view);
-
             if(mCursorAdapter == null) {
                 mCursorAdapter = new SimpleCursorAdapter(
                         MainActivity.this,
@@ -90,6 +79,17 @@ public class MainActivity extends AppCompatActivity {
                         0
                 );
                 playerListView.setAdapter(mCursorAdapter);
+
+                //onItemClickListener that will handle detail view when listview item is clicked
+                playerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent =  new Intent(MainActivity.this,DetailActivity.class);
+                        cursor.moveToPosition(position);
+                        intent.putExtra("id",cursor.getInt(cursor.getColumnIndex(PlayerSQLiteHelper.COL_ID)));
+                        startActivity(intent);
+                    }
+                });
             }else{
                 mCursorAdapter.swapCursor(cursor);
             }
