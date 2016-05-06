@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         playerListView = (ListView)findViewById(R.id.list_view);
 
-//        //Read database that contains our pre-populated info.
+        //Read database that contains our pre-populated info.
         DBAssetHelper dbAssetHelper = new DBAssetHelper(MainActivity.this);
         dbAssetHelper.getReadableDatabase();
 
@@ -68,18 +68,10 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this,"Searching for "+query,Toast.LENGTH_SHORT).show();
 
             //Cursor needs access to cursor in our SQL helper class.
-<<<<<<< HEAD
-            Cursor cursor = PlayerSQLiteHelper.getInstance(MainActivity.this).getPlayerList(query);
-            DatabaseUtils.dumpCursor(cursor);
-            ListView playerListView = (ListView)findViewById(R.id.list_view);
-||||||| merged common ancestors
-            Cursor cursor = PlayerSQLiteHelper.getInstance(MainActivity.this).getPlayerList(query);
-
-            ListView playerListView = (ListView)findViewById(R.id.list_view);
-=======
             cursor = PlayerSQLiteHelper.getInstance(MainActivity.this).getPlayerList(query);
             DatabaseUtils.dumpCursor(cursor);
->>>>>>> manual-db
+
+            playerListView = (ListView)findViewById(R.id.list_view);
 
             if(mCursorAdapter == null) {
                 mCursorAdapter = new SimpleCursorAdapter(

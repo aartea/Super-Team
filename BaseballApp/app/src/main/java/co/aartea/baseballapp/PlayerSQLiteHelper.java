@@ -64,12 +64,8 @@ public class PlayerSQLiteHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db){
         db.execSQL(CREATE_PLAYERS_TABLE);
-<<<<<<< HEAD
-        setDefaultData(db);
-||||||| merged common ancestors
-=======
 //        setDefaultData(db);
->>>>>>> manual-db
+
     }
 
     //onUpgrade method for database; drops a table if one exists and revamps it with new data
@@ -79,22 +75,21 @@ public class PlayerSQLiteHelper extends SQLiteOpenHelper{
         this.onCreate(db);
     }
 
-<<<<<<< HEAD
+
     public void setDefaultData(SQLiteDatabase db){
         ContentValues values = new ContentValues();
         values.put(COL_FIRST_NAME, "some name");
         db.insert(PLAYERS_TABLE_NAME, null, values);
     }
 
-||||||| merged common ancestors
-=======
+
+
 //    public void setDefaultData(SQLiteDatabase db){
 //        ContentValues values = new ContentValues();
 //        values.put("COL_FIRST_NAME", "Jimmy");
 //        db.insert(PLAYERS_TABLE_NAME, null, values);
 //    }
 
->>>>>>> manual-db
     //Passes parameter type string of our query
     public Cursor getPlayerList(String query){
 
