@@ -2,12 +2,10 @@ package co.aartea.baseballapp;
 
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
@@ -107,19 +105,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //1. Use a dialog box for user to input stuff; or 2. use an activity
+    //Nvm. Dialog box not used for this purpose; create xml layout file.
     public void addPlayer() {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-                        alertDialog.setTitle("Add Player");
 
-                        alertDialog.setButton("Add", new DialogInterface.OnClickListener()){
-                    public void onClick(DialogInterface dialog, int which){
-
-                        }
-                    };
-                    alertDialog.show();
                 }
             }
         );

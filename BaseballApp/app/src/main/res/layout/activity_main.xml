@@ -15,8 +15,8 @@
         android:text="Click search to input your favorite player!"
         android:textSize="20dp"
         android:id="@+id/textView"
-        android:layout_toLeftOf="@+id/button"
-        android:layout_toStartOf="@+id/button" />
+        android:layout_toStartOf="@+id/btnAdd"
+        android:layout_toLeftOf="@+id/btnAdd" />
 
     <ListView
         android:layout_width="match_parent"
