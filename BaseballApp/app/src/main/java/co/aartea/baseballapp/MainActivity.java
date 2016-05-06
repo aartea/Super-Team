@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         playerListView = (ListView)findViewById(R.id.list_view);
 
-        //Read database that contains our pre-populated info.
+//        //Read database that contains our pre-populated info.
         DBAssetHelper dbAssetHelper = new DBAssetHelper(MainActivity.this);
         dbAssetHelper.getReadableDatabase();
 

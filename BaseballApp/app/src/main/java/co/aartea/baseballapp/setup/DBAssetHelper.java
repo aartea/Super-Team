@@ -10,7 +10,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 public class DBAssetHelper extends SQLiteAssetHelper {
 
     //Single file; not a zip file; use .db!!
-    private static final String DATABASE_NAME = "PLAYER_DB.db";
+    private static final String DATABASE_NAME = "PLAYER_DB";
     private static final int DATABASE_VERSION = 1;
 
     public DBAssetHelper(Context context) {
