@@ -108,12 +108,13 @@ public class PlayerSQLiteHelper extends SQLiteOpenHelper{
 
         Cursor cursor = db.query(PLAYERS_TABLE_NAME, // a. table
                 PLAYERS_COLUMNS, // b. column names
-                COL_FIRST_NAME + " LIKE ?", // c. selections
-                new String[]{"%" + query + "%"}, // d. selections args
+                COL_FIRST_NAME + " LIKE ? OR " + COL_LAST_NAME + " LIKE ? OR " + COL_POSITION + " LIKE ? ", // c. selections
+                new String[]{"%" + query + "%", "%" + query + "%", "%" + query + "%"}, // d. selections args
                 null, // e. group by
                 null, // f. having
                 null, // g. order by
                 null); // h. limit
+
 
         return cursor;
     }
