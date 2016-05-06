@@ -14,11 +14,22 @@
         android:layout_height="wrap_content"
         android:text="Click search to input your favorite player!"
         android:textSize="20dp"
-        android:id="@+id/textView" />
+        android:id="@+id/textView"
+        android:layout_toLeftOf="@+id/button"
+        android:layout_toStartOf="@+id/button" />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/list_view"
         android:layout_below="@+id/textView"></ListView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Player"
+        android:id="@+id/btnAdd"
+        android:layout_above="@+id/list_view"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

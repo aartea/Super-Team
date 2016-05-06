@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private ListView playerListView;
     private Cursor cursor;
 
+    Button btnAdd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         mCursorAdapter = null;
 
         playerListView = (ListView)findViewById(R.id.list_view);
+        btnAdd = (Button) findViewById(R.id.btnAdd);
 
         //Read database that contains our pre-populated info.
         DBAssetHelper dbAssetHelper = new DBAssetHelper(MainActivity.this);
@@ -98,5 +102,21 @@ public class MainActivity extends AppCompatActivity {
                 mCursorAdapter.swapCursor(cursor);
             }
         }
+    }
+
+    public void addPlayer() {
+        btnAdd.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        dbHelper.insertFixture(
+                                match_date.getText().toString(),
+                                match_time.getText().toString(),
+                                match_opponent.getText().toString(),
+                                match_venue.getText().toString());
+                    }
+                }
+        );
     }
 }
