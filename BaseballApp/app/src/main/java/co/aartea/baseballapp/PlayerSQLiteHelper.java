@@ -53,7 +53,7 @@ public class PlayerSQLiteHelper extends SQLiteOpenHelper{
         return instance;
     }
 
-    private PlayerSQLiteHelper(Context context) {
+    PlayerSQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
