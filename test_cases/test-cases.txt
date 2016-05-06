@@ -1,0 +1,10 @@
+Test Cases:
+
+Click search icon to open search toolbar;
+Use blank query to return full list of players; (needs to be added)
+Use query to Search for last_name;
+Use query to Search for first_name;
+Use query to Search players by position; 
+Click player by any query to test onClickListener;
+Click player by any query to retrieve details and test our singleton;
+
