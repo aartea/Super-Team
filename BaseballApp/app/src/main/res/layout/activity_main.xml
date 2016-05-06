@@ -29,6 +29,7 @@
         android:layout_height="wrap_content"
         android:text="Add Player"
         android:id="@+id/btnAdd"
+        android:onClick="click_add"
         android:layout_above="@+id/list_view"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />

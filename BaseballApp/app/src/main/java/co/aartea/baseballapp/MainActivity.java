@@ -106,13 +106,9 @@ public class MainActivity extends AppCompatActivity {
 
     //1. Use a dialog box for user to input stuff; or 2. use an activity
     //Nvm. Dialog box not used for this purpose; create xml layout file.
-    public void addPlayer() {
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                }
-            }
-        );
+    public void click_add(View view) {
+        Intent i = new Intent(MainActivity.this, AddPlayer.class);
+        startActivity(i);
     }
 }

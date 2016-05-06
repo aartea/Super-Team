@@ -32,34 +32,32 @@ public class AddPlayer extends AppCompatActivity {
         playerPosition = (EditText) findViewById(R.id.player_position);
 
         addPlayer = (Button) findViewById(R.id.add);
-        addPlayer.setOnClickListener((View.OnClickListener) this);
         cancelAdd = (Button) findViewById(R.id.cancel_action);
-        cancelAdd.setOnClickListener((View.OnClickListener) this);
-
         newPlayer = new ArrayList();
-    }
 
-    @Override
-    public void onClick(View v){
-        if(v.getId() == R.id.cancel_action){
-            //Ends our activity
-            finish();
-        }
-        else if(v.getId() == R.id.add){
-            String getFirst = firstName.getText().toString();
-            String getLast = lastName.getText().toString();
-            String pos = playerPosition.getText().toString();
+        addPlayer.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String getFirst = firstName.getText().toString();
+                String getLast = lastName.getText().toString();
+                String pos = playerPosition.getText().toString();
 
-            Player player = new Player();
-            player.setFname(getFirst);
-            player.setLname(getLast);
-            player.setPosition(pos);
+                Player player = new Player();
+                player.setFname(getFirst);
+                player.setLname(getLast);
+                player.setPosition(pos);
 
-            insertPlayer(player);
+                newPlayer.add(player);
 
-        }
-        //Ends our activity
-        finish();
+                insertPlayer(player);
+                finish();
+            }
+        });
+
+        cancelAdd.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     public void insertPlayer(Player player){
