@@ -10,7 +10,8 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 public class DBAssetHelper extends SQLiteAssetHelper {
 
     //Single file; not a zip file; use .db!!
-    private static final String DATABASE_NAME = "PLAYER_DB.db";
+    //NOPE. Use zip file. API 10.
+    private static final String DATABASE_NAME = "PLAYER_DB";
     private static final int DATABASE_VERSION = 1;
 
     public DBAssetHelper(Context context) {

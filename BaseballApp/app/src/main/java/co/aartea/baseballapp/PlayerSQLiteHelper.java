@@ -18,17 +18,18 @@ public class PlayerSQLiteHelper extends SQLiteOpenHelper{
     public static final String PLAYERS_TABLE_NAME = "player_table";
 
     //Column names
-
     public static final String COL_ID = "_id";
     public static final String COL_FIRST_NAME = "first_name";
     public static final String COL_LAST_NAME = "last_name";
     public static final String COL_AGE= "age";
     public static final String COL_TEAM = "team";
     public static final String COL_POSITION = "position";
+    public static final String COL_RBI = "rbi";
+    public static final String COL_BA = "ba";
 
     //Array of our database columns
 
-    public static final String[] PLAYERS_COLUMNS = {COL_ID, COL_FIRST_NAME,COL_LAST_NAME,COL_AGE,COL_TEAM, COL_POSITION};
+    public static final String[] PLAYERS_COLUMNS = {COL_ID, COL_FIRST_NAME,COL_LAST_NAME,COL_AGE,COL_TEAM, COL_POSITION, COL_RBI, COL_BA};
 
     //Create our table as a string parameter
 
@@ -39,11 +40,13 @@ public class PlayerSQLiteHelper extends SQLiteOpenHelper{
             COL_LAST_NAME+" TEXT, "+
             COL_AGE+" INTEGER, "+
             COL_TEAM+" TEXT, "+
-            COL_POSITION+" TEXT )";
+            COL_POSITION+" TEXT, "+
+            COL_RBI+ " INTEGER, " +
+            COL_BA+ " REAL )";
 
     //Class constructor
     private static PlayerSQLiteHelper instance;
-
+    //Our singleton
     public static PlayerSQLiteHelper getInstance(Context context){
         if(instance == null){
             instance = new PlayerSQLiteHelper(context);
@@ -61,7 +64,12 @@ public class PlayerSQLiteHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db){
         db.execSQL(CREATE_PLAYERS_TABLE);
+<<<<<<< HEAD
         setDefaultData(db);
+||||||| merged common ancestors
+=======
+//        setDefaultData(db);
+>>>>>>> manual-db
     }
 
     //onUpgrade method for database; drops a table if one exists and revamps it with new data
@@ -71,12 +79,22 @@ public class PlayerSQLiteHelper extends SQLiteOpenHelper{
         this.onCreate(db);
     }
 
+<<<<<<< HEAD
     public void setDefaultData(SQLiteDatabase db){
         ContentValues values = new ContentValues();
         values.put(COL_FIRST_NAME, "some name");
         db.insert(PLAYERS_TABLE_NAME, null, values);
     }
 
+||||||| merged common ancestors
+=======
+//    public void setDefaultData(SQLiteDatabase db){
+//        ContentValues values = new ContentValues();
+//        values.put("COL_FIRST_NAME", "Jimmy");
+//        db.insert(PLAYERS_TABLE_NAME, null, values);
+//    }
+
+>>>>>>> manual-db
     //Passes parameter type string of our query
     public Cursor getPlayerList(String query){
 
@@ -96,12 +114,31 @@ public class PlayerSQLiteHelper extends SQLiteOpenHelper{
         Cursor cursor = db.query(PLAYERS_TABLE_NAME, // a. table
                 PLAYERS_COLUMNS, // b. column names
                 COL_FIRST_NAME + " LIKE ?", // c. selections
-                new String[]{query + "%"}, // d. selections args
+                new String[]{"%" + query + "%"}, // d. selections args
                 null, // e. group by
                 null, // f. having
                 null, // g. order by
                 null); // h. limit
 
         return cursor;
+    }
+
+    public String getDescriptionById(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(PLAYERS_TABLE_NAME,
+                new String[]{COL_FIRST_NAME},
+                COL_ID+" = ?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null,
+                null);
+
+        if(cursor.moveToFirst()){
+            return cursor.getString(cursor.getColumnIndex(COL_FIRST_NAME));
+        } else {
+            return "No Description Found";
+        }
     }
 }

@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -19,6 +21,8 @@ import co.aartea.baseballapp.setup.DBAssetHelper;
 
 public class MainActivity extends AppCompatActivity {
     private CursorAdapter mCursorAdapter;
+    private ListView playerListView;
+    private Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +30,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mCursorAdapter = null;
 
-        //Read database that contains our pre-populated info.
+        playerListView = (ListView)findViewById(R.id.list_view);
+
+//        //Read database that contains our pre-populated info.
         DBAssetHelper dbAssetHelper = new DBAssetHelper(MainActivity.this);
         dbAssetHelper.getReadableDatabase();
 
@@ -53,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    //Method handles our implicit intent
     private void handleIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
 
@@ -61,9 +68,18 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this,"Searching for "+query,Toast.LENGTH_SHORT).show();
 
             //Cursor needs access to cursor in our SQL helper class.
+<<<<<<< HEAD
             Cursor cursor = PlayerSQLiteHelper.getInstance(MainActivity.this).getPlayerList(query);
             DatabaseUtils.dumpCursor(cursor);
             ListView playerListView = (ListView)findViewById(R.id.list_view);
+||||||| merged common ancestors
+            Cursor cursor = PlayerSQLiteHelper.getInstance(MainActivity.this).getPlayerList(query);
+
+            ListView playerListView = (ListView)findViewById(R.id.list_view);
+=======
+            cursor = PlayerSQLiteHelper.getInstance(MainActivity.this).getPlayerList(query);
+            DatabaseUtils.dumpCursor(cursor);
+>>>>>>> manual-db
 
             if(mCursorAdapter == null) {
                 mCursorAdapter = new SimpleCursorAdapter(
@@ -75,6 +91,17 @@ public class MainActivity extends AppCompatActivity {
                         0
                 );
                 playerListView.setAdapter(mCursorAdapter);
+
+                //onItemClickListener that will handle detail view when listview item is clicked
+                playerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent =  new Intent(MainActivity.this,DetailActivity.class);
+                        cursor.moveToPosition(position);
+                        intent.putExtra("id",cursor.getInt(cursor.getColumnIndex(PlayerSQLiteHelper.COL_ID)));
+                        startActivity(intent);
+                    }
+                });
             }else{
                 mCursorAdapter.swapCursor(cursor);
             }
