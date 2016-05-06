@@ -1,6 +1,5 @@
 package co.aartea.baseballapp;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -64,8 +63,6 @@ public class PlayerSQLiteHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db){
         db.execSQL(CREATE_PLAYERS_TABLE);
-//        setDefaultData(db);
-
     }
 
     //onUpgrade method for database; drops a table if one exists and revamps it with new data
@@ -75,36 +72,12 @@ public class PlayerSQLiteHelper extends SQLiteOpenHelper{
         this.onCreate(db);
     }
 
-
-    public void setDefaultData(SQLiteDatabase db){
-        ContentValues values = new ContentValues();
-        values.put(COL_FIRST_NAME, "some name");
-        db.insert(PLAYERS_TABLE_NAME, null, values);
-    }
-
-
-
-//    public void setDefaultData(SQLiteDatabase db){
-//        ContentValues values = new ContentValues();
-//        values.put("COL_FIRST_NAME", "Jimmy");
-//        db.insert(PLAYERS_TABLE_NAME, null, values);
-//    }
-
     //Passes parameter type string of our query
     public Cursor getPlayerList(String query){
 
         SQLiteDatabase db = this.getReadableDatabase();
 
         //Cursor will go and locate your query among column values and it will be returned by this method.
-
-//        Cursor cursor = db.query(PLAYERS_TABLE_NAME, // a. table
-//                PLAYERS_COLUMNS, // b. column names
-//                null, // c. selections
-//                null, // d. selections args
-//                null, // e. group by
-//                null, // f. having
-//                null, // g. order by
-//                null); // h. limit
 
         Cursor cursor = db.query(PLAYERS_TABLE_NAME, // a. table
                 PLAYERS_COLUMNS, // b. column names
