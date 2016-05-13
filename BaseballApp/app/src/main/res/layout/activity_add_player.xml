@@ -13,7 +13,8 @@
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:id="@+id/first_name"
-        android:hint="Player First Name" />
+        android:hint="Player First Name"
+        android:contentDescription="First Name of Player"/>
     <EditText
         android:layout_width="350dp"
         android:layout_height="50dp"
@@ -21,7 +22,8 @@
         android:hint="Player Last Name"
         android:layout_below="@+id/first_name"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:contentDescription="Last Name of Player"/>
     <EditText
         android:layout_width="350dp"
         android:layout_height="75dp"
@@ -29,13 +31,15 @@
         android:hint="Player Position, e.g. ss (short-stop), catcher, etc."
         android:layout_below="@+id/last_name"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:contentDescription="Enter player position"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cancel"
+        android:contentDescription="Cancel"
         android:id="@+id/cancel_action"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
@@ -48,6 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add"
+        android:contentDescription="Add Player to list"
         android:id="@+id/add"
         android:layout_alignTop="@+id/cancel_action"
         android:layout_alignRight="@+id/player_position"

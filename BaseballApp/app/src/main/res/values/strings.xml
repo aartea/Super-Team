@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Baseball App</string>
-    <string name="search_hint">Search</string>
+    <string name="search_hint">first or last name, or position</string>
+    <string name="listview">List of things</string>
 </resources>
