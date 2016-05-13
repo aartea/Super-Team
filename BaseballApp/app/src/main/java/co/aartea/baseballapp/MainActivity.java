@@ -1,11 +1,15 @@
 package co.aartea.baseballapp;
 
+//Try applying the UX concepts learned from week 6
+
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
@@ -27,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnAdd;
 
+    FragmentTransaction fragmentTransaction;
+    FragmentManager fragmentManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,5 +116,16 @@ public class MainActivity extends AppCompatActivity {
     public void click_add(View view) {
         Intent i = new Intent(MainActivity.this, AddPlayer.class);
         startActivity(i);
+    }
+
+    public void click_remove(View view){
+
+        //Fragment Activity Stuff
+        fragmentManager = getSupportFragmentManager();  //Use to support other libraries of fragment
+        fragmentTransaction = fragmentManager.beginTransaction();
+
+        RemovePlayer removePlayer = new RemovePlayer();
+        fragmentTransaction.add(R.id.frame, removePlayer);    //Pass in parent and pass in fragment
+        fragmentTransaction.setCustomAnimations(R.anim.fade_in,R.anim.fade_out).show(removePlayer).commit();
     }
 }

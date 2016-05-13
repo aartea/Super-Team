@@ -2,4 +2,7 @@
     <string name="app_name">Baseball App</string>
     <string name="search_hint">first or last name, or position</string>
     <string name="listview">List of things</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
